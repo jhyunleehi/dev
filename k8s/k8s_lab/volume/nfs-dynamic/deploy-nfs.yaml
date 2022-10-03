@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-nfs-dynamic
+  labels:
+    app: nfs-dynamic
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nfs-dynamic
+  template:
+    metadata:
+      labels:
+        app: nfs-dynamic
+    spec:
+      containers:
+      - name: nfs-dynamic
+        image: takytaky/app:hostname
+        ports:
+        - containerPort: 8080
+        volumeMounts:                    
+          - mountPath: /tmp
+            name: volume-nfs        
+      volumes:                           
+      - name: volume-nfs            
+        persistentVolumeClaim:           
+          claimName: pvc-nfs-dynamic

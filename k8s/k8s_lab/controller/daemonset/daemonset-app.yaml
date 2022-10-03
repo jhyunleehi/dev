@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-app
+  labels:
+    k8s-app: daemonset-app
+spec:
+  selector:
+    matchLabels:
+      name: daemonset-app
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: daemonset-app
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: daemonset-app
+        image: takytaky/app:v1
+        env:
+        - name: appenv 
+          value: daemonset

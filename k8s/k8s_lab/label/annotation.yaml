@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annotation-nodejs
+  labels:
+    app: nodejs
+  annotations:
+    manufacturer: "takytaky"
+    e-mail: "takytaky@example.com"
+    release-version: "v1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: takytaky/app:v1
+        ports:
+        - containerPort: 80

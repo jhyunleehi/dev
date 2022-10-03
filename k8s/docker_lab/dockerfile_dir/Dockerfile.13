@@ -1,0 +1,5 @@
+FROM ubuntu
+ADD host.html  /first_dir/
+ADD host.html  /first_dir/secondfile
+ADD https://github.com/kubernetes/kubernetes/blob/master/LICENSE /first_dir/
+ADD webdata.tar /first_dir/

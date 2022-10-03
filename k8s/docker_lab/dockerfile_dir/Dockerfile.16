@@ -1,0 +1,3 @@
+FROM ubuntu
+ARG myName="Yu Mi"
+RUN echo $myName

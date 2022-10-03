@@ -1,0 +1,4 @@
+FROM centos:7
+RUN echo $HOME
+SHELL ["/bin/bash", "-c" ] 
+RUN echo $HOME

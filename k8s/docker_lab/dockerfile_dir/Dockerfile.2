@@ -1,0 +1,5 @@
+FROM ubuntu 
+
+RUN echo "Shell: HOME Dir -->  $HOME "
+RUN ["echo", "EXEC: HOme dir --> $HOME" ] 
+RUN ["/bin/bash" , "-c", "echo EXEC: HOME dir : $HOME" ] 

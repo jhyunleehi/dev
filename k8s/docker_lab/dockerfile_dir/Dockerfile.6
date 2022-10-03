@@ -1,0 +1,6 @@
+FROM ubuntu
+RUN apt-get -y update && apt-get -y install nginx  curl
+EXPOSE 80
+COPY index.html /var/www/html/
+HEALTHCHECK  --interval=30s --timeout=3s CMD curl -f http://localhost/index.html  || exit 1
+CMD ["nginx", "-g", "daemon off ;" ]

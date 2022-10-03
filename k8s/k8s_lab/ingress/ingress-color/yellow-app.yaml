@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellow-app
+  labels:
+    app: yellow-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yellow-app
+  template:
+    metadata:
+      labels:
+        app: yellow-app
+    spec:
+      containers:
+      - name: yellow-app
+        image: takytaky/web:yellow
+        ports:
+        - containerPort: 80

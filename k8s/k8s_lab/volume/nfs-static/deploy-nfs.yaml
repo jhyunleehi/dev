@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-nfs
+  labels:
+    app: deploy-nfs
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: deploy-nfs
+  template:
+    metadata:
+      labels:
+        app: deploy-nfs
+    spec:
+      containers:
+      - name: app-log
+        image: takytaky/app:hostname
+        ports:
+        - containerPort: 8080
+        volumeMounts:                    
+          - mountPath: /tmp 
+            name: volume-nfs          
+      volumes:                           
+      - name: volume-nfs              
+        persistentVolumeClaim:           
+          claimName: pvc-nfs

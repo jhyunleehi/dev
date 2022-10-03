@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: yumi-nfs-storageclass 
+provisioner: yumi-nfs-test 
+parameters:
+  archiveOnDelete: "false"

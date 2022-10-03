@@ -1,0 +1,5 @@
+FROM centos:7
+RUN ["useradd" , "sysadmin"]
+RUN ["whoami"]
+USER sysadmin
+RUN ["whoami"]

@@ -1,0 +1,41 @@
+#apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: color-web
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  defaultBackend:
+    service:
+      name: blue-svc
+      port:
+        number: 80
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /blue
+        backend:
+          service: 
+            name: blue-svc
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /green
+        backend:
+          service: 
+            name: green-svc
+            port:
+              number: 80
+  - host: color.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service: 
+            name: yellow-svc
+            port:
+              number: 80

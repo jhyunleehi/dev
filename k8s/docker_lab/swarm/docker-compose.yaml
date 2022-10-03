@@ -1,0 +1,16 @@
+version: '3.9'
+networks: {}
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  web:
+    image: httpd
+    command: apachectl -DFOREGROUND
+    links:
+    - mysql:db
+    ports:
+    - 80:80
+
+volumes: {}

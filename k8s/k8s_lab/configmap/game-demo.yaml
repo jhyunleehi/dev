@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-game-demo
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        - name: PLAYER_INITIAL_LIVES 
+          valueFrom:
+            configMapKeyRef:
+              name: configmap-game
+              key: lives
+        - name: UI_PROPERTIES_ALLOW_TEXTMODE
+          valueFrom:
+            configMapKeyRef:
+              name: configmap-ui
+              key: allow.textmode

@@ -1,0 +1,10 @@
+FROM centos:7
+#LABEL maintainer "Yu Mi <yumi@example.com>"
+#LABEL title "TEST Image"
+#LABEL version 1.0
+#LABEL description "This image is test image ^__^"
+
+LABEL maintainer "Yu Mi <yumi@example.com>" \
+      title "TEST Image" \
+      version 1.0 \
+      description "This image is test image ^__^"

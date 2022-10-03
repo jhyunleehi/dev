@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: label-app01
+  labels:
+    app: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+        environment: develop
+        release: beta
+    spec:
+      containers:
+      - name: nodejs
+        image: takytaky/app
+        ports:
+        - containerPort: 80

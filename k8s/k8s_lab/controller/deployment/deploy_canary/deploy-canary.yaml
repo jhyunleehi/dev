@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-canary
+  labels:
+    app: webapp
+    release: beta
+  annotations:
+    kubernetes.io/change-cause: release beta
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: webapp
+      release: beta
+  template:
+    metadata:
+      labels:
+        app: webapp
+        release: beta
+    spec:
+      containers:
+      - name: deploy-canary
+        image: takytaky/web:canary
+        ports:
+        - containerPort: 80

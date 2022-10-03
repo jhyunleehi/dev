@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: statefulset-app
+spec:
+  serviceName: statefulset-service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: statefulset-app
+  template:
+    metadata:
+      labels:
+        app: statefulset-app
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker2
+      containers:
+      - name: statefulset-app
+        env:
+        - name: color
+          value: blue
+        image: takytaky/app:statefulset 
+        ports:
+        - name: http
+          containerPort: 8080
+        volumeMounts:
+        - name: data
+          mountPath: /var/data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 32Mi
+      accessModes:
+      - ReadWriteOnce

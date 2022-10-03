@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume-pod
+  labels:
+    app: volume-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: volume-pod
+  template:
+    metadata:
+      labels:
+        app: volume-pod
+    spec:
+      containers:
+      - name: volume-pod
+        image: takytaky/app:log
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: "/tmp"
+          name: app-vol
+      volumes:
+      - name: app-vol
+        persistentVolumeClaim:
+          claimName: pvc

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostname-server
+  labels:
+    app: hostname-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hostname-server
+  template:
+    metadata:
+      labels:
+        app: hostname-server
+    spec:
+      containers:
+      - name: hostname-server
+        image: takytaky/hostname
+        ports:
+        - containerPort: 80

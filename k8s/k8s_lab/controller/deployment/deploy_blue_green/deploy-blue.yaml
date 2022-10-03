@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-blue
+  labels:
+    app: deploy-blue
+    release: stable
+  annotations:
+    kubernetes.io/change-cause: release blue
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deploy-blue
+      release: stable
+  template:
+    metadata:
+      labels:
+        app: deploy-blue
+        release: stable
+    spec:
+      containers:
+      - name: deploy-blue
+        image: takytaky/web:blue
+        ports:
+        - containerPort: 80

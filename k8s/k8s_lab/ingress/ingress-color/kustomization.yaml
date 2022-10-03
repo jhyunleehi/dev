@@ -1,0 +1,17 @@
+# NOTE: kustomize is not supported. This file exists only to be able to reference it from bases.
+# https://kubectl.docs.kubernetes.io/references/kustomize/bases/
+# To create Ingress Rules and Service and Deployment 
+# Ingress name : color-web
+# app name : blue-app, green-app, yellow-app
+# service name : blue-svc, green-svc, yellow-svc 
+# 
+# namespace: default 
+
+resources:
+  - blue-app.yaml
+  - green-app.yaml
+  - yellow-app.yaml
+  - blue-svc.yaml
+  - green-svc.yaml
+  - yellow-svc.yaml
+  - ingress-color-web.yaml

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  containers:
+  - name: app
+    image: takytaky/app
+    resources:
+      requests:
+        cpu: 0.1
+        memory: 200M
+      limits:
+        cpu: 0.5
+        memory: 1G
+    ports:
+    - containerPort: 8080

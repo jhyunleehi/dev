@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  labels:
+    dedicated: webapp
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: worker1
+  containers:
+  - name: webapp
+    image: takytaky/app
+    ports:
+    - containerPort: 8080
