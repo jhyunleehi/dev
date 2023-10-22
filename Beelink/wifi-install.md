@@ -134,3 +134,5 @@ WARNING: you should run this program as super-user.
        resources: memory:fce00000-fce03fff
 
 ```
+
+linux kernel 6 intel AX200 wifi
