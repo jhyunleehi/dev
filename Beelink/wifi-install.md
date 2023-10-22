@@ -34,3 +34,8 @@ jhyunlee@good:~/build/rtl8821CU$ lspci
 04:00.5 Multimedia controller: Advanced Micro Devices, Inc. [AMD] ACP/ACP3X/ACP6x Audio Coprocessor (rev 01)
 04:00.6 Audio device: Advanced Micro Devices, Inc. [AMD] Family 17h/19h HD Audio Controller
 ```
+
+#### intel 시스템 지원 utility 설치가 필요한듯  SSU
+
+https://community.intel.com/t5/Wireless/Wifi-not-working-in-Linux-using-AX200-on-Beelink-mini-PC/td-p/1498596
+
