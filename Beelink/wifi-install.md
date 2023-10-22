@@ -49,6 +49,7 @@ https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
 #### intel AX200 driver 
 
 https://gist.github.com/mixxen/339846df6f316416336d038090a3c848
+
 ```
 # run this to determine which firmware the kernal is looking for
 modinfo iwlwifi | grep iwlwifi-cc
@@ -83,4 +84,53 @@ BIOS에서 빠른 시작을 비활성화하고 Windows 10을 부팅한 다음 �
 @jason-shen
 Jason-Shen이 댓글을 달았습니다. 2022년 5월 28일
 여기 이 문제에 대한 2센트가 있습니다. 지금까지 이것은 여전히 ​​문제입니다.@zinwalin맞습니다. 팁도 추가하세요. 새로 설치했는데 Wi-Fi가 표시되지 않으면 스트레스 받지 마세요. 1x 미만의 속도로 창으로 이동한 다음 재부팅하면 Wi-Fi가 나타날 것입니다. 누군가 나에게 말했으면 좋았을 텐데요. 그거, 3일 뒤에야 알겠는데 ㅋㅋㅋ
+```
+
+
+```
+jhyunlee@good:/lib/firmware$ modinfo iwlwifi | grep iwlwifi-cc
+firmware:       iwlwifi-cc-a0-72.ucode
+```
+
+interl A200 firmware 버젼 
+https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
+
+
+intel driver 
+https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi
+
+
+https://itslinuxfoss.com/install-intel-wifi-6-ax200-driver/
+```
+jhyunlee@good:/lib/firmware$ lshw -C network
+WARNING: you should run this program as super-user.
+  *-network                 
+       description: Ethernet interface
+       product: RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+       vendor: Realtek Semiconductor Co., Ltd.
+       physical id: 0
+       bus info: pci@0000:01:00.0
+       logical name: enp1s0
+       version: 15
+       serial: b0:41:6f:0d:56:fe
+       size: 100Mbit/s
+       capacity: 1Gbit/s
+       width: 64 bits
+       clock: 33MHz
+       capabilities: bus_master cap_list ethernet physical tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+       configuration: autonegotiation=on broadcast=yes driver=r8169 driverversion=6.2.0-35-generic duplex=full firmware=rtl8168h-2_0.0.2 02/26/15 ip=192.168.0.11 latency=0 link=yes multicast=yes port=twisted pair speed=100Mbit/s
+       resources: irq:39 ioport:f000(size=256) memory:fcf04000-fcf04fff memory:fcf00000-fcf03fff
+  *-network UNCLAIMED
+       description: Network controller
+       product: Wi-Fi 6 AX200
+       vendor: Intel Corporation
+       physical id: 0
+       bus info: pci@0000:02:00.0
+       version: 1a
+       width: 64 bits
+       clock: 33MHz
+       capabilities: cap_list
+       configuration: latency=0
+       resources: memory:fce00000-fce03fff
+
 ```
