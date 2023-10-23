@@ -95,48 +95,23 @@ $ sudo dmesg | grep iwl
 
     networkingdrivers20.04iwlwifi
 
-Share
-Improve this question
-Follow
-edited Oct 3, 2022 at 14:34
-asked Sep 28, 2022 at 23:53
-NV-CSG's user avatar
-NV-CSG
-2133 bronze badges
 
-    @chili555 is this something that you can help, please? – 
-    NV-CSG
-    Sep 28, 2022 at 23:54
-    I'm working on it. I'll post back as soon as/if I find something. – 
-    chili555
-    Sep 29, 2022 at 2:13
-    May we please see the result of the terminal command: sudo dmesg | grep 25:00 in an edit to your question? Welcome to Ask Ubuntu. – 
-    chili555
-    Sep 29, 2022 at 12:31
-    Also, the latest kernel version is -48 and you are running -41. If you update and reboot, is the problem resolved? sudo dmesg | grep iwl – 
-    chili555
-    Sep 29, 2022 at 12:34
-    @chili555 I added the output of sudo dmesg | grep 25:00, and I ran apt get update and apt get upgrade. Now I am working on upgrading the kernel/ – 
-    NV-CSG
-    Sep 29, 2022 at 16:13
-
-Show 6 more comments
-2 Answers
-Sorted by:
-0
-
-Please try the technique mentioned in the link I gave above. Open a terminal and do:
-
-sudo nano /etc/default/grub
-
-In the editor window, use the arrow keys to move the cursor to the line beginning with "GRUB_CMDLINE_LINUX_DEFAULT". Change that line to read:
-
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pci=assign-busses"
-
-Proofread carefully twice. Save (Ctrl+o followed by Enter) and exit (Ctrl+x) the text editor nano. Follow with:
-
-sudo update-grub
-
-Reboot and tell us if there is any improvement.
+https://community.intel.com/t5/Wireless/Wifi-not-working-in-Linux-using-AX200-on-Beelink-mini-PC/td-p/1498596
 
 
+
+```
+Hi Deivid,
+
+I got the wifi to work today. I wish I would understand why it is working now, what made the difference. Here is what i did:
+
+Used a wired network connection with an ethernet cable
+installed Ubuntu 22.04.02 LTS from a USB stick
+During installation, chose to update packages and install proprietary drivers
+After the installation completed I was able to connect to my wifi network and remove the wired connection
+Thanks for sending the additional troubleshooting steps. I ran them and will try to understand their output.
+
+Now that wifi is working, we can close this conversation. Thanks again for the pointers.
+
+Paul
+```

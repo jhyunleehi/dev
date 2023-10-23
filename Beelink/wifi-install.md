@@ -1,4 +1,4 @@
-### wifi install 
+### wifi install
 
 #### chip : 02:00.0 Network controller: Intel Corporation Wi-Fi 6 AX200 (rev 1a)
 
@@ -39,14 +39,11 @@ jhyunlee@good:~/build/rtl8821CU$ lspci
 
 https://community.intel.com/t5/Wireless/Wifi-not-working-in-Linux-using-AX200-on-Beelink-mini-PC/td-p/1498596
 
-
 https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
-
 
 2.5기가비트 이더넷은 Realtek RTL8125 네트워크 인터페이스 컨트롤러를 사용하고 WiFi 6은 이론적으로 최대 2.4Gb/s의 처리량을 제공할 수 있는 2×2 WiFi 6 기술을 지원하는 Intel Cyclone Peak AX200 M.2 2230 카드를 사용합니다. Bluetooth 5.2 지원 제공:
 
-
-#### intel AX200 driver 
+#### intel AX200 driver
 
 https://gist.github.com/mixxen/339846df6f316416336d038090a3c848
 
@@ -72,7 +69,6 @@ sudo dmesg | grep iwlwifi | grep version
 # [    4.566709] iwlwifi 0000:05:00.0: loaded firmware version 50.3e391d3e.0 op_mode iwlmvm
 ```
 
-
 ```
 ACupofAir가 댓글을 달았습니다. on 2021년 8월 6일
 아니요, 귀하의 방법은 구식입니다. Ax200은 커널 5.1+부터 지원되었습니다. 우분투 20.04를 사용하면 확실히 ax200을 지원합니다. Wi-Fi를 사용할 수 없는 가장 큰 문제는 win10의 빠른 시작일 수 있습니다. 비활성화한 다음 문제를 해결합니다. 대체로 귀하의 아이디어에 감사드립니다.
@@ -86,7 +82,6 @@ Jason-Shen이 댓글을 달았습니다. 2022년 5월 28일
 여기 이 문제에 대한 2센트가 있습니다. 지금까지 이것은 여전히 ​​문제입니다.@zinwalin맞습니다. 팁도 추가하세요. 새로 설치했는데 Wi-Fi가 표시되지 않으면 스트레스 받지 마세요. 1x 미만의 속도로 창으로 이동한 다음 재부팅하면 Wi-Fi가 나타날 것입니다. 누군가 나에게 말했으면 좋았을 텐데요. 그거, 3일 뒤에야 알겠는데 ㅋㅋㅋ
 ```
 
-
 ```
 jhyunlee@good:/lib/firmware$ modinfo iwlwifi | grep iwlwifi-cc
 firmware:       iwlwifi-cc-a0-72.ucode
@@ -95,12 +90,11 @@ firmware:       iwlwifi-cc-a0-72.ucode
 interl A200 firmware 버젼 
 https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
 
-
 intel driver 
 https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi
 
-
 https://itslinuxfoss.com/install-intel-wifi-6-ax200-driver/
+
 ```
 jhyunlee@good:/lib/firmware$ lshw -C network
 WARNING: you should run this program as super-user.
@@ -132,7 +126,6 @@ WARNING: you should run this program as super-user.
        capabilities: cap_list
        configuration: latency=0
        resources: memory:fce00000-fce03fff
-
 ```
 
 linux kernel 6 intel AX200 wifi
