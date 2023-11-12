@@ -129,3 +129,9 @@ WARNING: you should run this program as super-user.
 ```
 
 linux kernel 6 intel AX200 wifi
+
+
+#### 결론
+
+==> 황당하지만 전원 플러그까지 완전히 빼고 나서 다시 재부팅하니 wifi 정상적으로 잡았다.
+==> 황당하군 ...

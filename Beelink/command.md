@@ -1,7 +1,7 @@
 #### command
 
 ```
-$ lspic 
+$ lspci
 $ lshw -C network
 $ modinfo iwlwifi | grep iwlwifi-cc
 $ dmesg | grep iwlwifi | grep version
