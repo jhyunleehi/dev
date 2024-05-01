@@ -3,12 +3,12 @@
 https://github.com/Sangwan70/openstack-zed
 [https://github.com/Sangwan70/openstack-zed.git](https://github.com/Sangwan70/openstack-zed.git)
 
-### 1. node
+## 1. node
 1. controller 
 2. compute
 3. storge
 
-#### user: stack/ok
+### user: stack/ok
 
 ### configurageion 
 #### network 
