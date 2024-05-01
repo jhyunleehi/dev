@@ -35,7 +35,7 @@
 4. nw : NIC1,NIC2,NIC3,NIC4
 
 
-## controller node
+## setup controller node
 
 1. connection ready 
 ```sh
@@ -102,12 +102,7 @@ network:
           via: 192.168.56.1
     enp0s8:
       dhcp4: no
-      dhcp6: no
-      addresses: [192.168.58.11/24]
-      gateway4: 192.168.58.1
-      routes:
-        - to: 192.168.58.0/24
-          via: 192.168.58.1
+      dhcp6: no      
     enp0s9:
       dhcp4: no
       dhcp6: no
@@ -133,6 +128,95 @@ network:
 * MAC 주소 생성하는 옵션을 사용한다. 
 
 
+## setup compute node
+* add 4G disk
+* add 4G disk 
+```sh
+$ sudo hostnamectl set-hostname compute 
+$ sudo  vi /etc/netplan/01-network-manager-all.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.56.31/24]
+      gateway4: 192.168.56.1
+      nameservers:
+        addresses: [168.126.63.1,168.126.63.2]
+      routes:
+        - to: 192.168.56.0/24
+          via: 192.168.56.1
+    enp0s8:
+      dhcp4: no
+      dhcp6: no      
+    enp0s9:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.57.31/24]
+      gateway4: 192.168.57.1  
+      routes:
+        - to: 192.168.57.0/24
+          via: 192.168.57.1
+    enp0s10:
+      dhcp4: yes
+      dhcp6: no 
+      routes:
+        - to: default
+          via:10.0.5.2     
+```
 
+## setup storage node
 
+```sh
+$ sudo hostnamectl set-hostname storage 
+$ sudo  vi /etc/netplan/01-network-manager-all.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.56.41/24]
+      gateway4: 192.168.56.1
+      nameservers:
+        addresses: [168.126.63.1,168.126.63.2]
+      routes:
+        - to: 192.168.56.0/24
+          via: 192.168.56.1
+    enp0s8:
+      dhcp4: no
+      dhcp6: no      
+    enp0s9:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.57.41/24]
+      gateway4: 192.168.57.1  
+      routes:
+        - to: 192.168.57.0/24
+          via: 192.168.57.1
+    enp0s10:
+      dhcp4: yes
+      dhcp6: no 
+      routes:
+        - to: default
+          via:10.0.5.2     
+```
+
+## hosts, ssh-keygen, ssh-copy-id
+
+```sh
+jhyunlee@Good:~$ cat /etc/hosts
+192.168.56.11 controller
+192.168.56.31 compute
+192.168.56.41 storage
+
+ssh-keygen -P ""
+ssh-copy-id controller
+ssh-copy-id compute
+ssh-copy-id storage
+
+```
 
