@@ -34,6 +34,14 @@
 3. disk 40G 4G
 4. nw : NIC1,NIC2,NIC3,NIC4
 
+## virtual box host-only network 
+### /etc/vbox/networks.conf 설정 
+==> 이것 지정해야만 network 주소를 설정할 수 있음
+```sh
+$ sudo vi /etc/vbox/networks.conf
+#* 10.10.0.0/24 10.10.1.0/24 192.168.56.0/24 192.168.57.0/24
+* 0.0.0.0/0 ::/0
+```
 
 ## setup controller node
 
@@ -205,7 +213,7 @@ network:
           via:10.0.5.2     
 ```
 
-## hosts, ssh-keygen, ssh-copy-id
+### hosts, ssh-keygen, ssh-copy-id
 
 ```sh
 jhyunlee@Good:~$ cat /etc/hosts
@@ -219,4 +227,59 @@ ssh-copy-id compute
 ssh-copy-id storage
 
 ```
+### git clone 
+```sh
+$ git clone https://github.com/Sangwan70/openstack-zed.git
+$ scp -r  openstack-zed  compute:~
+$ scp -r  openstack-zed  storage:~
+```
 
+
+### /etc/vbox/networks.conf 설정 
+```sh
+$ sudo vi /etc/vbox/networks.conf
+#* 10.10.0.0/24 10.10.1.0/24 192.168.56.0/24 192.168.57.0/24
+* 0.0.0.0/0 ::/0
+```
+-> 주의할 점은 별표로 시작한다는 점이다. 
+-> host only network 에 뭔가 취약점이 있어서 이것의 시작 주소를 제한 한 것 같다. 
+
+
+==> host-only network 지정할 때 오류 발생하는 현상 관련
+
+https://forums.virtualbox.org/viewtopic.php?t=104357
+
+```
+오류: 호스트 전용 네트워크 - 호스트 네트워크 인터페이스 매개변수를 저장하지 못했습니다. - E_ACCESSDENIED
+우편 ~에 의해마르셀_»3. 2021년 11월 18:57
+
+내 호스트 전용 네트워크의 IP 주소나 서브넷 마스크를 변경하려고 하면 다음 오류 코드가 나타납니다.
+호스트 네트워크 인터페이스 매개변수를 저장하지 못했습니다.
+수신자 RC:
+E_ACCESSDENIED (0x80070005)
+해결 방법을 아는 사람이 있나요? 나는 아치 기반의 리눅스 시스템을 가지고 있습니다
+맨 위
+스코거스1
+사이트 중재자
+게시물: 20945
+가입일: 2009년 12월 30일, 20:14
+기본 OS: MS Windows 10
+VBox 버전: PUEL
+게스트 OS: Windows, Linux
+Re: 오류: 호스트 전용 네트워크 - 호스트 네트워크 인터페이스 매개변수를 저장하지 못했습니다. - E_ACCESSDENIED
+우편 작성자: scottgus1 »3. 2021년 11월 19:00
+
+Linux 호스트에 대한 새로운 설정이 6.1.28에 도입되었습니다. 보다https://www.virtualbox.org/manual/ch06. ... k_hostonly
+Linux, Mac OS X 및 Solaris Oracle VM VirtualBox에서는 192.68.56.0/21 범위의 IP 주소만 호스트 전용 어댑터에 할당되도록 허용합니다. IPv6의 경우 링크 로컬 주소만 허용됩니다. 다른 범위가 필요한 경우 /etc/vbox/networks.conf를 만들고 거기에서 허용되는 범위를 지정하여 활성화할 수 있습니다. 예를 들어, 10.0.0.0/8 및 192.168.0.0/16 IPv4 범위와 2001::/64 범위를 허용하려면 /etc/vbox/networks.conf에 다음 줄을 입력합니다.
+
+* 10.0.0.0/8 192.168.0.0 /16
+* 2001::/64
+
+해시 #으로 시작하는 줄은 무시됩니다. 다음 예에서는 모든 주소를 허용하여 범위 제어를 효과적으로 비활성화합니다.
+
+* 0.0.0.0/0 ::/0
+
+파일이 있지만 파일에 범위가 지정되지 않은 경우 호스트 전용 어댑터에는 주소가 할당되지 않습니다. 다음 예에서는 모든 범위를 효과적으로 비활성화합니다.
+
+# 호스트 전용 어댑터에는 주소가 허용되지 않습니다 .
+```
