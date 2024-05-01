@@ -3,6 +3,8 @@
 2. compute
 3. storge
 
+가이드: https://www.youtube.com/watch?v=uEYxBaFq_V4&t=553s
+
 #### user: stack/ok
 
 ### configurageion 
@@ -39,7 +41,7 @@
 ==> 이것 지정해야만 network 주소를 설정할 수 있음
 ```sh
 $ sudo vi /etc/vbox/networks.conf
-#* 10.10.0.0/24 10.10.1.0/24 192.168.56.0/24 192.168.57.0/24
+#* 10.10.0.0/24 10.10.1.0/24 10.10.0.0/24 10.10.1.0/24
 * 0.0.0.0/0 ::/0
 ```
 
@@ -52,7 +54,7 @@ $ sudo date
 $ sudo date -s "2024-05-01 12:00:00"
 $ sudo hwclk -w 
 
-$ sudo ipaddr add 192.168.56.11/24 dev enp0s3
+$ sudo ipaddr add 10.10.0.11/24 dev enp0s3
 $ sudo apt update --fix-missing
 
 $ sudo ip link set dev enps10 down
@@ -67,11 +69,12 @@ $ sudo apt install git
 ```
 2. setting host from ssh clinet
 ```sh
-$ ssh stack@192.168.56.11
+$ ssh stack@10.10.0.11
 $ sudo vi  /etc/hosts
-192.168.56.11 controller
-192.168.56.12 compute
-192.168.56.13 storage
+10.10.0.11 controller
+10.10.0.31 compute
+10.10.0.41 storage
+
 
 stack@controller:/etc/apt$ grep  "^deb" /etc/apt/sources.list
 deb http://kr.archive.ubuntu.com/ubuntu/ jammy main restricted
@@ -101,30 +104,30 @@ network:
     enp0s3:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.56.11/24]
-      gateway4: 192.168.56.1
+      addresses: [10.10.0.11/24]
+      gateway4: 10.10.0.1
       nameservers:
         addresses: [168.126.63.1,168.126.63.2]
       routes:
-        - to: 192.168.56.0/24
-          via: 192.168.56.1
+        - to: 10.10.0.0/24
+          via: 10.10.0.1
     enp0s8:
       dhcp4: no
       dhcp6: no      
     enp0s9:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.57.11/24]
-      gateway4: 192.168.57.1  
+      addresses: [10.10.1.11/24]
+      gateway4: 10.10.1.1  
       routes:
-        - to: 192.168.57.0/24
-          via: 192.168.57.1
+        - to: 10.10.1.0/24
+          via: 10.10.1.1
     enp0s10:
       dhcp4: yes
       dhcp6: no 
       routes:
         - to: default
-          via:10.0.5.2     
+          via: 10.0.5.2     
 ```
 
 ### make clone compute node, storage node
@@ -149,30 +152,30 @@ network:
     enp0s3:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.56.31/24]
-      gateway4: 192.168.56.1
+      addresses: [10.10.0.31/24]
+      gateway4: 10.10.0.1
       nameservers:
         addresses: [168.126.63.1,168.126.63.2]
       routes:
-        - to: 192.168.56.0/24
-          via: 192.168.56.1
+        - to: 10.10.0.0/24
+          via: 10.10.0.1
     enp0s8:
       dhcp4: no
       dhcp6: no      
     enp0s9:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.57.31/24]
-      gateway4: 192.168.57.1  
+      addresses: [10.10.1.31/24]
+      gateway4: 10.10.1.1  
       routes:
-        - to: 192.168.57.0/24
-          via: 192.168.57.1
+        - to: 10.10.1.0/24
+          via: 10.10.1.1
     enp0s10:
       dhcp4: yes
       dhcp6: no 
       routes:
         - to: default
-          via:10.0.5.2     
+          via: 10.0.5.2     
 ```
 
 ## setup storage node
@@ -187,39 +190,39 @@ network:
     enp0s3:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.56.41/24]
-      gateway4: 192.168.56.1
+      addresses: [10.10.0.41/24]
+      gateway4: 10.10.0.1
       nameservers:
         addresses: [168.126.63.1,168.126.63.2]
       routes:
-        - to: 192.168.56.0/24
-          via: 192.168.56.1
+        - to: 10.10.0.0/24
+          via: 10.10.0.1
     enp0s8:
       dhcp4: no
       dhcp6: no      
     enp0s9:
       dhcp4: no
       dhcp6: no
-      addresses: [192.168.57.41/24]
-      gateway4: 192.168.57.1  
+      addresses: [10.10.1.41/24]
+      gateway4: 10.10.1.1  
       routes:
-        - to: 192.168.57.0/24
-          via: 192.168.57.1
+        - to: 10.10.1.0/24
+          via: 10.10.1.1
     enp0s10:
       dhcp4: yes
       dhcp6: no 
       routes:
         - to: default
-          via:10.0.5.2     
+          via: 10.0.5.2     
 ```
 
 ### hosts, ssh-keygen, ssh-copy-id
 
 ```sh
 jhyunlee@Good:~$ cat /etc/hosts
-192.168.56.11 controller
-192.168.56.31 compute
-192.168.56.41 storage
+10.10.0.11 controller
+10.10.0.31 compute
+10.10.0.41 storage
 
 ssh-keygen -P ""
 ssh-copy-id controller
@@ -238,7 +241,7 @@ $ scp -r  openstack-zed  storage:~
 ### /etc/vbox/networks.conf 설정 
 ```sh
 $ sudo vi /etc/vbox/networks.conf
-#* 10.10.0.0/24 10.10.1.0/24 192.168.56.0/24 192.168.57.0/24
+#* 10.10.0.0/24 10.10.1.0/24 10.10.0.0/24 10.10.1.0/24
 * 0.0.0.0/0 ::/0
 ```
 -> 주의할 점은 별표로 시작한다는 점이다. 
@@ -283,3 +286,49 @@ Linux, Mac OS X 및 Solaris Oracle VM VirtualBox에서는 192.68.56.0/21 범위�
 
 # 호스트 전용 어댑터에는 주소가 허용되지 않습니다 .
 ```
+
+## install
+
+### 1. ./pre-download.sh
+stack@controller:~/scripts$ ./pre-download.sh
+
+### 2. ~/openstack-zed/controller/scripts/ubuntu
+
+
+./1_apt_init.sh
+./2_apt_upgrade.sh
+./3_install_mysql.sh
+./4_install_rabbitmq.sh
+./5_install_memcached.sh
+./6_setup_keystone_1.sh
+./7_setup_keystone_2.sh
+./8_setup_glance_1.sh
+./9_setup_glance_2.sh
+./10_setup_placement_1.sh
+./11_setup_placement_2.s
+./12_setup_nova_1.sh
+./13_setup_nova_2.sh
+./14_setup_nova_3.sh
+./15_setup_nova_4.sh
+./16_setup_neutron_1.sh
+./17_setup_neutron_2.sh
+./18_setup_neutron_3.sh
+./19_setup_neutron_4.sh
+./20_setup_horizon.sh
+./21_setup_cinder_1.sh
+./22_setup_cinder_2.sh
+./23_setup_cinder_3.sh
+./24_setup_heat_1.sh
+./25_setup_heat_2.sh
+./26_setup_swift_1.sh
+./27_setup_swift_2.sh
+./28_setup_barbican_1.sh
+./29_setup_barbican_2.sh
+./30_setup_barbican_3.sh
+./31_setup_swift_3.sh
+./32_setup_trove_1.sh
+./33_setup_trove_2.sh
+./34_setup_trove_3.sh
+./35_setup_trove_4.sh
+./setup_etcd.sh
+./tacker
