@@ -3,6 +3,7 @@
 2. compute
 3. storge
 
+
 ### configurageion 
 #### network 
 1. host only network #1 10.10.0.1/24
