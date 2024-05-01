@@ -28,13 +28,13 @@ https://github.com/Sangwan70/openstack-zed
 4. nw : NIC1,NIC2,NIC3,NIC4
 
 ### compute node 
-1. cput 1
+1. cpu: 1
 2. mem 1G
 3. disk 40G 4G 4G 4G
 4. nw : NIC1,NIC2,NIC3,NIC4
 
 ### storage node 
-1. cput 1
+1. cpu: 1
 2. mem 1G
 3. disk 40G 4G
 4. nw : NIC1,NIC2,NIC3,NIC4
