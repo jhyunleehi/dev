@@ -332,3 +332,51 @@ stack@controller:~/scripts$ ./pre-download.sh
 ./35_setup_trove_4.sh
 ./setup_etcd.sh
 ./tacker
+
+
+
+./1_apt_init.sh
+./2_apt_upgrade.sh
+./3_setup_nova_1.sh
+./4_setup_nova_2.sh
+./5_setup_neutron_1.sh
+./6_setup_neutron_2.sh
+./7_setup_neutron_3.sh
+./8_setup_neutron_4.sh
+./9_setup_swift_1.sh
+./10_setup_swift_2.sh
+./11_setup_swift_3.sh
+./tacker
+
+
+
+#------------------------------------------------------------------------------
+# Verify operation
+#------------------------------------------------------------------------------
+
+echo "Verifying keystone installation."
+
+# From this point on, we are going to use keystone for authentication
+unset OS_AUTH_URL OS_PASSWORD
+
+echo "Requesting an authentication token as an admin user."
+openstack \
+    --os-auth-url http://controller:5000/v3 \
+    --os-project-domain-name Default \
+    --os-user-domain-name Default \
+    --os-project-name "$ADMIN_PROJECT_NAME" \
+    --os-username "$ADMIN_USER_NAME" \
+    --os-auth-type password \
+    --os-password "$ADMIN_PASS" \
+    token issue
+
+echo "Requesting an authentication token for the demo user."
+openstack \
+    --os-auth-url http://controller:5000/v3 \
+    --os-project-domain-name Default \
+    --os-user-domain-name Default \
+    --os-project-name "$DEMO_PROJECT_NAME" \
+    --os-username "$DEMO_USER_NAME" \
+    --os-auth-type password \
+    --os-password "$DEMO_PASS" \
+    token issue
