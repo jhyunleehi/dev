@@ -11,15 +11,16 @@ $ sudo apt-get update && sudo apt-get upgrade -y
 
 ### Step 2: Creating stack user with Sudo privileges
 ```sh
-$ sudo useradd -s /bin/bash -d /opt/stack -m stack
-$ echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
-$ sudo su - stack
+$ sudo useradd -s /bin/bash -d /opt/stack -m dstack
+$ echo "dstack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dstack
+$ sudo su - dstack
 ```
 
 
 ### Step 3: Downloading Devstack
 ```sh
 $ echo "check_certificate = off" >> ~/.wgetrc
+$ sudo apt install git 
 $ git clone https://opendev.org/openstack/devstack
 ```
 
@@ -110,3 +111,74 @@ $ sudo apt install -y openstack-swift-proxy python3-swift python3-swiftclient rd
 $ sudo apt install -y openstack-selinux python3-openstacksdk
 ```
 
+```
+sudo  dpkg -r  apache2                        
+sudo  dpkg -r  bridge-utils                   
+sudo  dpkg -r  docutils-common                
+sudo  dpkg -r  erlang-base                    
+sudo  dpkg -r  ieee-data                      
+sudo  dpkg -r  ipvsadm                        
+sudo  dpkg -r  keepalived                     
+sudo  dpkg -r  libapache2-mod-proxy-uwsgi     
+sudo  dpkg -r  libapache2-mod-wsgi-py3        
+sudo  dpkg -r  libvirt-clients                
+sudo  dpkg -r  libvirt-daemon-config-network  
+sudo  dpkg -r  libvirt-daemon-config-nwfilter 
+sudo  dpkg -r  libvirt-daemon-system          
+sudo  dpkg -r  nvme-cli                       
+sudo  dpkg -r  openstack-dashboard-common     
+sudo  dpkg -r  os-brick-common                
+sudo  dpkg -r  pycadf-common                  
+sudo  dpkg -r  python3-django                 
+sudo  dpkg -r  python3-greenlet               
+sudo  dpkg -r  python3-json-pointer           
+sudo  dpkg -r  python3-jsonpatch              
+sudo  dpkg -r  python3-jsonschema             
+sudo  dpkg -r  python3-ldap:amd64             
+sudo  dpkg -r  python3-migrate                
+sudo  dpkg -r  python3-oslo.messaging         
+sudo  dpkg -r  python3-oslo.policy            
+sudo  dpkg -r  python3-oslo.privsep           
+sudo  dpkg -r  python3-oslo.rootwrap          
+sudo  dpkg -r  python3-rtslib-fb              
+sudo  dpkg -r  python3-yaql                   
+sudo  dpkg -r  radvd                          
+sudo  dpkg -r  swtpm                          
+sudo  dpkg -r  swtpm-tools                    
+sudo  dpkg -r  zvmcloudconnector-common       
+
+sudo  dpkg --purge  apache2                        
+sudo  dpkg --purge  bridge-utils                   
+sudo  dpkg --purge  docutils-common                
+sudo  dpkg --purge  erlang-base                    
+sudo  dpkg --purge  ieee-data                      
+sudo  dpkg --purge  ipvsadm                        
+sudo  dpkg --purge  keepalived                     
+sudo  dpkg --purge  libapache2-mod-proxy-uwsgi     
+sudo  dpkg --purge  libapache2-mod-wsgi-py3        
+sudo  dpkg --purge  libvirt-clients                
+sudo  dpkg --purge  libvirt-daemon-config-network  
+sudo  dpkg --purge  libvirt-daemon-config-nwfilter 
+sudo  dpkg --purge  libvirt-daemon-system          
+sudo  dpkg --purge  nvme-cli                       
+sudo  dpkg --purge  openstack-dashboard-common     
+sudo  dpkg --purge  os-brick-common                
+sudo  dpkg --purge  pycadf-common                  
+sudo  dpkg --purge  python3-django                 
+sudo  dpkg --purge  python3-greenlet               
+sudo  dpkg --purge  python3-json-pointer           
+sudo  dpkg --purge  python3-jsonpatch              
+sudo  dpkg --purge  python3-jsonschema             
+sudo  dpkg --purge  python3-ldap:amd64             
+sudo  dpkg --purge  python3-migrate                
+sudo  dpkg --purge  python3-oslo.messaging         
+sudo  dpkg --purge  python3-oslo.policy            
+sudo  dpkg --purge  python3-oslo.privsep           
+sudo  dpkg --purge  python3-oslo.rootwrap          
+sudo  dpkg --purge  python3-rtslib-fb              
+sudo  dpkg --purge  python3-yaql                   
+sudo  dpkg --purge  radvd                          
+sudo  dpkg --purge  swtpm                          
+sudo  dpkg --purge  swtpm-tools                    
+sudo  dpkg --purge  zvmcloudconnector-common       
+```
