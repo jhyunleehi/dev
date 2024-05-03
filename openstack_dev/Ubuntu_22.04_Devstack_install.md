@@ -41,7 +41,7 @@ sudo brctl addbr mybr0
 sudo ifconfig mybr0 192.168.100.1 netmask 255.255.255.0 up
 sudo iptables -I FORWARD -j ACCEPT
 sudo iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -j MASQUERADE
-sudo ip addr add $할당받은_공인_IP/32 dev lo
+sudo ip addr add 10.10.0.51/32 dev lo
 ```
 
 ### 5. Openstack 설치
@@ -59,6 +59,8 @@ ADMIN_PASSWORD=secret
 DATABASE_PASSWORD=$ADMIN_PASSWORD
 RABBIT_PASSWORD=$ADMIN_PASSWORD
 SERVICE_PASSWORD=$ADMIN_PASSWORD
+
+LOGFILE=$DEST/logs/stack.sh.log
 
 # Enable Swift
 enable_service s-proxy s-object s-container s-account
@@ -108,7 +110,7 @@ mechanism_drivers=openvswitch,l2population
 tunnel_types=vxlan,gre
 ```
 
-### 6. 재설치
+### 6. 설치, 재설치
 ```sh
 ./clean.sh
 ./stack.sh
@@ -120,7 +122,6 @@ sudo dpkg -P pkg_name
 
 ### 7. 실행
 ```sh
-
 ll ~/devstack/openrc
 source openrc $username $project_name
 source openrc admin admin
