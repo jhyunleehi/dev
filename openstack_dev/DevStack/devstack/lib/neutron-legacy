@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# TODO(slaweq): remove that file when other projects, like e.g. Grenade will
+# be using lib/neutron
+
+source $TOP_DIR/lib/neutron
