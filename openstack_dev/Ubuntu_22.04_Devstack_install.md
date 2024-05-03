@@ -127,10 +127,110 @@ source openrc $username $project_name
 source openrc admin admin
 evn | grep OS_
 
-https://10.10.50/dashboard
+https://10.10.0.51/dashboard
 https://localhost/dashboard
+
+http://10.10.0.51/dashboard/auth/login/?netx=/dashboard/
+
+
 
 Openstack Login
 Now, enter the credentials. You can also log in as admin here, by having User Name as admin & for Password using the one we added to local.conf file.
 ```
+### 8.설치 결과
+```sh
+=========================
+DevStack Component Timing
+ (times are in seconds)  
+=========================
+wait_for_service      24
+async_wait           244
+osc                  342
+apt-get              439
+test_with_retry        3
+dbsync                14
+pip_install          142
+apt-get-update         3
+run_process           49
+git_timed            283
+-------------------------
+Unaccounted time      27
+=========================
+Total runtime        1570
 
+=================
+ Async summary
+=================
+ Time spent in the background minus waits: 699 sec
+ Elapsed time: 1570 sec
+ Time if we did everything serially: 2269 sec
+ Speedup:  1.44522
+
+
+Post-stack database query stats:
++------------+-----------+-------+
+| db         | op        | count |
++------------+-----------+-------+
+| keystone   | SELECT    | 59730 |
+| keystone   | INSERT    |   128 |
+| glance     | SELECT    |    64 |
+| neutron    | SELECT    |  4976 |
+| neutron    | CREATE    |   318 |
+| neutron    | SHOW      |    60 |
+| neutron    | INSERT    |   273 |
+| neutron    | UPDATE    |   233 |
+| neutron    | ALTER     |   182 |
+| neutron    | DROP      |   104 |
+| neutron    | DELETE    |    24 |
+| nova_cell0 | SELECT    |    99 |
+| nova_cell1 | SELECT    |   167 |
+| nova_cell0 | CREATE    |   206 |
+| nova_cell1 | CREATE    |   209 |
+| nova_cell0 | ALTER     |     2 |
+| nova_cell1 | ALTER     |     2 |
+| nova_cell0 | SHOW      |    59 |
+| nova_cell1 | SHOW      |    59 |
+| placement  | SELECT    |    46 |
+| placement  | INSERT    |    58 |
+| placement  | SET       |     2 |
+| nova_api   | SELECT    |   114 |
+| nova_cell0 | INSERT    |     5 |
+| nova_cell0 | UPDATE    |     7 |
+| placement  | UPDATE    |     3 |
+| nova_cell1 | INSERT    |     4 |
+| nova_cell1 | UPDATE    |    26 |
+| cinder     | SELECT    |   115 |
+| cinder     | INSERT    |     5 |
+| cinder     | UPDATE    |     1 |
+| glance     | INSERT    |    14 |
+| glance     | UPDATE    |     2 |
+| nova_api   | INSERT    |    20 |
+| nova_api   | SAVEPOINT |    10 |
+| nova_api   | RELEASE   |    10 |
+| cinder     | DELETE    |     1 |
++------------+-----------+-------+
+
+
+
+This is your host IP address: 10.10.0.51
+This is your host IPv6 address: ::1
+Horizon is now available at http://10.10.0.51/dashboard
+Keystone is serving at http://10.10.0.51/identity/
+The default users are: admin and demo
+The password: secret
+
+WARNING: 
+Configuring uWSGI with a WSGI file is deprecated, use module paths instead
+Configuring uWSGI with a WSGI file is deprecated, use module paths instead
+Configuring uWSGI with a WSGI file is deprecated, use module paths instead
+Configuring uWSGI with a WSGI file is deprecated, use module paths instead
+
+
+Services are running under systemd unit files.
+For more information see: 
+https://docs.openstack.org/devstack/latest/systemd.html
+
+DevStack Version: 2024.2
+Change: 9be4ceeaa10f6ed92291e77ec52794acfb67c147 Fix datetime.utcnow() deprecation warning 2024-04-23 15:37:37 -0400
+OS Version: Ubuntu 22.04 jammy
+```
