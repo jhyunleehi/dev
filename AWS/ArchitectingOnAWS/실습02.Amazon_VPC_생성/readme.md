@@ -83,6 +83,9 @@ unzip instanceData.zip
 
 ![alt text](image-17.png)
 
+
+
+
 ### 과제8: session manager 접속
 * session manager 이용한 접속
 

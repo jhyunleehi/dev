@@ -30,3 +30,9 @@ ssm-user    3113    3003  0 02:19 pts/0    00:00:00 grep -i ssm
 
 
 
+## DELL BIOS update 
+
+https://www.dell.com/support/kbdoc/ko-kr/000131486/linux-%EB%98%90%EB%8A%94-ubuntu-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-dell-bios-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
+
+https://www.dell.com/support/kbdoc/ko-kr/000131486/linux-%EB%98%90%EB%8A%94-ubuntu-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-dell-bios-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8
+
