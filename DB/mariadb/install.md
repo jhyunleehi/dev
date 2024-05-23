@@ -28,6 +28,8 @@ source venv/bin/activate
 pip install pandas
 pip install mariadb==1.1.7
 pip install pyyaml
+pip install sqlalchemy
+pip install mysql-connector-python
 deactivate
 ```
 ### 설치결과
