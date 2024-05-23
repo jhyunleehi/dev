@@ -22,3 +22,19 @@ root@V11:~# lsblk -S
 NAME HCTL       TYPE VENDOR   MODEL                                  REV SERIAL               TRAN
 sda  0:0:0:0    disk ATA      LITEONIT LJT-128L6G-11 M.2 2260 128GB 10C  TW0Y48CM5508545D9026 sata
 ```
+
+### 노트북 덮게 닫아도 전원 유지
+
+systemd 전원 설정방법
+Ubuntu 20.04 설치된 노트북에서 덮개가 닫힌 상태에서도 전원을 유지해도록 설정한다. 터미널 창에서 /etc/systemd/logind.conf 파일을 sudo 권한으로 수정한다.
+
+/etc/systemd/logind.conf
+```
+[Login]
+HandleLidSwitch=ignore
+```
+systemctl restart systemd-logind.service
+```
+jhyunlee@snote:~/code/dev$ systemctl | grep login
+  systemd-logind.service                                                                                     loaded active running   User Login Management
+```
