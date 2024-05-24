@@ -7,6 +7,8 @@ http://bit.ly/krk_class  사전 등록이 필요합니다.
 
 https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3
 
+https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3
+
 ![alt text](image.png)
 
 ### system manager console 
