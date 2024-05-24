@@ -19,3 +19,66 @@
 ![alt text](image.png)
 
 
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+## 과제 2: S3 버킷 정책 생성
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowS3ReadAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::737833037758:role/EmployeeDirectoryAppRole"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::employee-photo-bucket-jhyunlee-7747",
+        "arn:aws:s3:::employee-photo-bucket-jhyunlee-7747/*"
+      ]
+    }
+  ]
+}
+```
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+![alt text](image-10.png)
+
+## 과제 3: S3 버킷을 사용하도록 애플리케이션 수정
+
+![alt text](image-11.png)
+
+
+## 과제 4: S3 버킷에 객체 업로드
+
+![alt text](image-12.png)
+![alt text](image-13.png)
+
+## 과제 5: Amazon DynamoDB 테이블 생성
+
+![alt text](image-14.png)
+
+
+## 과제 6: 애플리케이션 웹 인터페이스를 사용하여 애플리케이션 테스트
+![alt text](image-15.png)
+![alt text](image-16.png)
+![alt text](image-17.png)
+
+## 과제 7: AWS Management Console을 사용하여 기존 DynamoDB 항목 관리
+![alt text](image-18.png)
+![alt text](image-19.png)
+
+## 과제 8: AWS Management Console을 사용하여 DynamoDB 테이블에서 항목 생성
+
+![alt text](image-20.png)
+
