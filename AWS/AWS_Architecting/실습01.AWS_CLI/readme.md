@@ -25,7 +25,7 @@ Amazon Web Services(AWS) 환경은 리소스를 신속하고 저렴하게 사용
 ### 과제 1.4: 서비스용 콘솔 열기
 ![alt text](image-6.png)
 
-
+---
 ## 과제 2: AWS 관리 콘솔을 사용하여 Amazon S3 버킷 생성
 
 ![alt text](image-9.png)
@@ -33,13 +33,14 @@ Amazon Web Services(AWS) 환경은 리소스를 신속하고 저렴하게 사용
 
 ![alt text](image-8.png)
 
-
+---
 ## 과제 3: S3 콘솔을 사용하여 Amazon S3 버킷에 객체 업로드
 
 ![alt text](image-10.png)
 
 ![alt text](image-11.png)
 
+---
 ## 과제 4: AWS CLI를 사용하여 Amazon S3 버킷을 생성한 후 객체 업로드
 
 ### 과제 4.1: SESSION MANAGER를 사용하여 COMMAND HOST에 대한 연결 생성

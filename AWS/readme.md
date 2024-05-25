@@ -1,6 +1,8 @@
 수강생 실습 URL: https://classrooms.aws.training
 kabryong@amazon.com
 
+https://login.us-east-1.auth.skillbuilder.aws/login?redirect_uri=https://www.aws.training/LogOnV2/Response&client_id=3ngs935m8cnns64p4m2sm3hsta&response_type=code&scope=openid&state=%2Ftranscript%2FViltTranscriptDetail%3FtranscriptId%3DukEQ5uo_1kCwBfakvyViuA2&require_email_verification=false&identity_provider=
+
 http://bit.ly/krk_class  사전 등록이 필요합니다. 
 
 [여기](https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3)
@@ -34,5 +36,3 @@ ssm-user    3003    2990  0 02:14 pts/0    00:00:00 sh
 ssm-user    3112    3003  0 02:19 pts/0    00:00:00 ps -ef
 ssm-user    3113    3003  0 02:19 pts/0    00:00:00 grep -i ssm
 ```
-
-

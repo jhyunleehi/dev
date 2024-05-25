@@ -1,45 +1,50 @@
+# 실습 4: Amazon VPC에서 고가용성 구성
 
 Amazon Web Services(AWS)는 클라우드에서 안정적이고 내결함성이 있으며 가용성이 뛰어난 시스템을 구축하기 위한 서비스와 인프라를 제공합니다. 내결함성은 시스템을 구축하는 데 사용되는 일부 구성 요소에 장애가 발생해도 계속 작동할 수 있는 시스템의 능력입니다. 고가용성은 시스템 장애를 예방하는 것이 아니라 장애에서 빠르게 복구하는 시스템의 능력입니다. AWS 솔루션스 아키텍트는 가용성이 뛰어나고 필요할 경우 내결함성을 갖춘 시스템을 설계하고 이러한 설계의 이점과 비용을 이해해야 합니다. 이 실습에서는 두 가지 유용한 AWS 서비스인 Elastic Load Balancing과 Auto Scaling 그룹을 통합합니다. 애플리케이션 서버로 작동하는 Amazon Elastic Compute Cloud(Amazon EC2) 인스턴스의 Auto Scaling 그룹을 생성한 다음, Auto Scaling 그룹 내 인스턴스 간에 부하가 균형있게 전달되도록 Application Load Balancer를 구성합니다. 계속해서 다중 AZ를 허용하고 읽기 전용 복제본을 생성한 후 승격하는 등 Amazon Relational Database Service(Amazon RDS)를 사용해 봅니다. 읽기 전용 복제본을 사용할 경우 데이터를 프라이머리 데이터베이스에 쓰고 읽기 전용 복제본에서 읽을 수 있습니다. 읽기 전용 복제본은 프라이머리 데이터베이스로 승격할 수 있으므로 고가용성과 재해 복구에 유용한 도구입니다.
 
 ![alt text](image.png)
 
-## 1.VPC
+---
+## 과제 1: 기존 실습 환경 검사
+### 과제 1.1: 네트워크 인프라 검사
 
-### VPC 생성
+#### 1.VPC
+
+* VPC 생성
 ![alt text](image-1.png)
 
-### subnet
+* subnet
 ![alt text](image-2.png)
 
-### 라우팅 테이블
+* 라우팅 테이블
 ![alt text](image-3.png)
 
 
-### 네트워크 ACL
+* 네트워크 ACL
 ![alt text](image-4.png)
 
-### 인터넷 게이트웨이
+* 인터넷 게이트웨이
 ![alt text](image-5.png)
 
-### 보안그룹
+* 보안그룹
 1. inbound
 ![alt text](image-6.png)
-2. outbound
+1. outbound
 ![alt text](image-7.png)
 
 
-### DB 보안 그룹
+* DB 보안 그룹
 
 ![alt text](image-8.png)
 
 
-## EC2 설정 검사
+### 과제 1.2: EC2 인스턴스 검사
 
-### AppServer 인스턴스
+#### AppServer 인스턴스
 
 ![alt text](image-9.png)
 
-### 사용자 데이터 편집
+#### 사용자 데이터 편집
 
 ![alt text](image-10.png)
 
@@ -79,24 +84,26 @@ sed -i "s/DBPASSWORD/$pw/g" /var/www/html/get-parameters.php
 systemctl start httpd.service
 systemctl enable httpd.service
 ```
-## 2. 로드 밸런서 검사
+### 과제 1.3: 로드 밸런서 구성 검사
 
-### Target group
+####  Target group
 ![alt text](image-11.png)
 
-### LB 검사 
+#### LB 검사 
 
 ![alt text](image-12.png)
 
-
-## 인스턴스 템플릿 생성
+---
+## 과제 2: 시작 템플릿 생성
+### 인스턴스 템플릿 생성
 
 ### 템플릿 생성
 ![alt text](image-15.png)
 
 
-
-## 3. Auto Scaling  그룹 생성 
+---
+## 과제 3: Auto Scaling 그룹 생성
+![alt text](image-33.png)
 
 이 과제에서는 프라이빗 서브넷에 EC2 인스턴스를 배포하는 Auto Scaling 그룹을 생성합니다. 프라이빗 서브넷의 인스턴스는 인터넷에서 액세스할 수 없기 때문에 애플리케이션을 배포할 때는 이것이 보안 모범 사례입니다. 대신 사용자가 Application Load Balancer에 요청을 보내면 다음 다이어그램과 같이 해당 요청이 프라이빗 서브넷에 있는 EC2 인스턴스에 전달됩니다.
 
@@ -116,7 +123,7 @@ systemctl enable httpd.service
 
 ![alt text](image-21.png)
 
-## 4. 어플리케이션 테스트
+## 과제 4: 애플리케이션 테스트
 
 1. target group  확인 
 ![alt text](image-22.png)
@@ -155,3 +162,41 @@ Registered targets 섹션에 3개의 인스턴스가 있습니다. 여기에는 
 ![alt text](image-32.png)
 
 
+![alt text](image-34.png)
+
+---
+## 과제 5: 애플리케이션 티어의 고가용성 테스트
+
+
+
+---
+### 과제 6: 데이터베이스 티어의 고가용성 구성
+이전 과제에서 애플리케이션 티어의 고가용성을 확인했습니다. 하지만 Aurora 데이터베이스는 여전히 하나의 데이터베이스 인스턴스에서만 작동하고 있습니다.
+
+### 과제 6.1: 여러 가용 영역에서 실행되도록 데이터베이스 구성
+
+
+---
+## 과제 7: NAT 게이트웨이가 고가용성을 제공하도록 설정
+
+이 과제에서는 두 번째 가용 영역에 있는 또 다른 NAT 게이트웨이를 시작하여 NAT 게이트웨이를 고가용성으로 만듭니다.
+
+2개의 가용 영역에 걸친 프라이빗 서브넷에 Inventory-App 서버가 배포되어 있습니다. 인터넷에 액세스해야 하는 경우(예: 데이터 다운로드) 요청은 퍼블릭 서브넷에 있는 NAT 게이트웨이를 통해 리디렉션되어야 합니다. 현재 아키텍처에는 Public Subnet 1에 NAT 게이트웨이 하나만 있고, 모든 Inventory-App 서버가 이 NAT 게이트웨이를 사용하여 인터넷에 연결합니다. 즉, 가용 영역 1에서 장애가 발생하면 어느 애플리케이션 서버도 인터넷과 통신할 수 없습니다. 가용 영역 2에 두 번째 NAT 게이트웨이를 추가하면 가용 영역 1에 장애가 발생하더라도 프라이빗 서브넷의 리소스가 인터넷에 연결할 수 있습니다.
+
+
+![alt text](image-35.png)
+
+
+### 과제 7.1: 두 번째 NAT 게이트웨이 생성
+
+
+
+### 과제 7.2: 새 라우팅 테이블 생성 및 구성
+
+
+
+### 과제 7.3: 프라이빗 서브넷 2의 라우팅 구성
+
+
+---
+## 과제 8: Aurora 데이터베이스 장애 조치 적용

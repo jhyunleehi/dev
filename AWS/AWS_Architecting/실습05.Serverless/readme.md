@@ -1,8 +1,8 @@
 
 ![alt text](image.png)
 
-
-### 과제1. 주제생성
+---
+## 과제1. 주제생성
 
 ![alt text](image-1.png)
 
@@ -14,7 +14,9 @@
 
 * 주제 소유자: 429893242685
 
-### 과제2. 대기열 생성
+
+---
+## 과제2. 대기열 생성
 ### 과제 2.1: 썸네일 이미지용 AMAZON SQS 대기열 생성
 ![alt text](image-2.png)
 
@@ -39,7 +41,8 @@
 
 ![alt text](image-10.png)
 
-### 과제 3: Amazon S3 이벤트 알림 생성
+---
+## 과제 3: Amazon S3 이벤트 알림 생성
 ### 과제 3.1: AMAZON S3 버킷이 주제에 게시를 할 수 있도록 AMAZON SNS 액세스 정책 구성
 ![alt text](image-11.png)
 
@@ -96,9 +99,8 @@
 
 ![alt text](image-15.png)
 
-
-### 과제 4: AWS Lambda 함수 2개 생성 및 구성
-
+---
+## 과제 4: AWS Lambda 함수 2개 생성 및 구성
 
 ### 과제 4.1: 썸네일 이미지를 생성하는 LAMBDA 함수 생성
 
@@ -213,21 +215,20 @@ def handler(event, context):
 
 ```
 
-
-### 과제 5: Amazon S3 버킷에 객체 업로드
+---
+## 과제 5: Amazon S3 버킷에 객체 업로드
 
 ![alt text](image-24.png)
 
 
 ![alt text](image-25.png)
 
-
-### 과제 6: 처리된 파일 확인
+---
+## 과제 6: 처리된 파일 확인
 
 ![alt text](image-27.png)
 
 ![alt text](image-26.png)
-
 
 
 ![alt text](image-29.png)

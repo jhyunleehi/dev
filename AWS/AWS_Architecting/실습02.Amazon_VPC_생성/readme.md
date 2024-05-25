@@ -6,55 +6,61 @@ AWS 솔루션스 아키텍트는 Amazon Web Services(AWS)의 전반적 기능과
 
 ![alt text](image.png)
 
-
+---
 ## 과제1: 특정리전에 VPC 생성 
 
 ![alt text](image-1.png)
 
-1. VPC  생성 
+### 1. VPC  생성 
 ![alt text](image-2.png)
 
-2. VPC 설정 편집 
+### 2. VPC 설정 편집 
 * DNS 호스트 이름 활성화
 * DNS 확인 활성화
 ![alt text](image-3.png)
 
 
-
+---
 ## 과제2: 퍼블릭 서브넷 및 프라이빗 서브넷 생성
 이 과제에서는 Lab VPC에서 퍼블릭 서브넷과 프라이빗 서브넷을 생성합니다. VPC에 새 서브넷을 추가하려면 VPC의 범위에서 서브넷의 IPv4 CIDR 블록을 지정해야 합니다. 서브넷을 위치할 가용 영역을 지정할 수 있습니다. 동일한 가용 영역에 여러 서브넷을 위치할 수 있습니다.
 
 ![alt text](image-4.png)
 
 
-1. public subnet 생성
+### 1. public subnet 생성
 
 ![alt text](image-5.png)
 
-2. private subnet 생성
+### 2. private subnet 생성
 
 ![alt text](image-6.png)
+
 * 라우팅 테이블
 ![alt text](image-7.png)
+
 * 네트워크 ACL
 ![alt text](image-8.png)
 
+---
 ## 과제3: internet gateway
 
 ![alt text](image-9.png)
 
+---
 ## 과제4: public subnet traffic을 ineternet gateway로 라우팅
 
 ![alt text](image-10.png)
 
 ![alt text](image-11.png)
 
+---
 ## 과제5: public 보안 그룹 생성
 1. 인바운드 규칙
 ![alt text](image-12.png)
 2. 아웃바운드 규칙
 ![alt text](image-13.png)
 
+---
 ## 과제6 : EC2 인스턴스 생성
 ![alt text](image-14.png)
 
@@ -78,6 +84,7 @@ cd /var/www/html
 wget https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-TF-200-ARCHIT/v7.7.3.prod-f959cb1c/lab-2-VPC/scripts/instanceData.zip
 unzip instanceData.zip
 ```
+---
 ## 과제7: http public instance에 접속
 * http를 이용한 public dns를 이용한 외부 접속
 
@@ -128,7 +135,7 @@ tmpfs             182M  424K  181M   1% /run
 tmpfs             453M     0  453M   0% /tmp
 /dev/nvme0n1p128   10M  1.3M  8.7M  13% /boot/efi
 ```
-
+---
 ## 과제8: session manager 접속
 * session manager 이용한 접속
 
@@ -141,6 +148,7 @@ EC2 인스턴스 연결을 통해 인스턴스에 연결하려면 다음 권한�
 * ec2-instance-connect:SendSSHPublicKey
 * ec2:DescribeInstances
 
+---
 ## 과제9: NAT 구성한 private 접속
 
 ![alt text](image-19.png)
@@ -153,12 +161,15 @@ EC2 인스턴스 연결을 통해 인스턴스에 연결하려면 다음 권한�
 
 ![alt text](image-21.png)
 
+---
 ## 과제 10: 프라이빗 리소스용 보안 그룹 생성
+* 보안그룹은 VPC 보안정책을 적용한다. 이것을 꼭 방화벽이라고 하기는 그렇고 VPC안에서 설정된 보안 정책이라고 보면 될 것 같다. 그리고  이렇게 설정된 보안 정책을 EC2에 적용하는 것이라고  보면 되겠다. 그런데 이것이 실제로 EC2에서 ufw 처럼 시스템 도구로 등록되는 것은 아니다. VPC안에서 동작하고 관리하는 보안 정책이다.  
 
 ![alt text](image-23.png)
 
 ![alt text](image-24.png)
 
+---
 ## 과제 11: 프라이빗 서브넷에서 Amazon EC2 인스턴스 시작
 
 ![alt text](image-25.png)
@@ -175,7 +186,7 @@ EC2 인스턴스 연결을 통해 인스턴스에 연결하려면 다음 권한�
 * 스토리지
 ![alt text](image-28.png)
 
-
+---
 ## 과제 12: 프라이빗 서브넷의 Amazon EC2 인스턴스에 연결
 
 ```sh
@@ -270,7 +281,7 @@ Linux ip-10-0-3-18.ap-northeast-1.compute.internal 6.1.90-99.173.amzn2023.x86_64
 ## 선택 과제  
 
 * private instance IP 10.0.3.18
-* public  instance IP 10.0.3.18
+* public  instance IP 10.0.0.16
 
 1. ping fail
 ```sh
