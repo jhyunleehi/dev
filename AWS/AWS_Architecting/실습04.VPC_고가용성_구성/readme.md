@@ -11,10 +11,13 @@ Amazon Web Services(AWS)는 클라우드에서 안정적이고 내결함성이 �
 #### 1.VPC
 
 * VPC 생성
+![alt text](image-36.png)
+
 ![alt text](image-1.png)
 
 * subnet
 ![alt text](image-2.png)
+![alt text](image-37.png)
 
 * 라우팅 테이블
 ![alt text](image-3.png)
@@ -60,7 +63,7 @@ systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
 
 # Download Inventory App Lab files
-wget https://eu-west-3-tcprod.s3.eu-west-3.amazonaws.com/courses/ILT-TF-200-ARCHIT/v7.7.3.prod-f959cb1c/lab-4-HA/scripts/inventory-app.zip
+wget https://ap-southeast-1-tcprod.s3.ap-southeast-1.amazonaws.com/courses/ILT-TF-200-ARCHIT/v7.7.3.prod-f959cb1c/lab-4-HA/scripts/inventory-app.zip
 unzip inventory-app.zip -d /var/www/html/
 
 # Download and install the AWS SDK for PHP
@@ -71,7 +74,7 @@ unzip /var/www/html/aws.zip -d /var/www/html/
 # Load Amazon Aurora DB connection details from AWS CloudFormation
 un="dbadmin"
 pw="lab-password"
-ep="inventory-cluster.cluster-ceish0e2ysws.eu-west-3.rds.amazonaws.com"
+ep="inventory-cluster.cluster-c2dro870nket.ap-southeast-1.rds.amazonaws.com"
 db="inventory"
 
 # Populate PHP app settings with DB info
@@ -84,6 +87,8 @@ sed -i "s/DBPASSWORD/$pw/g" /var/www/html/get-parameters.php
 systemctl start httpd.service
 systemctl enable httpd.service
 ```
+
+
 ### 과제 1.3: 로드 밸런서 구성 검사
 
 ####  Target group
@@ -93,6 +98,16 @@ systemctl enable httpd.service
 
 ![alt text](image-12.png)
 
+
+### 과제 1.4: 웹 브라우저에서 PHP 재고 애플리케이션 열기
+![alt text](image-38.png)
+
+설정을 저장하면 재고 애플리케이션이 기본 페이지로 리디렉션되고, 다양한 항목의 재고가 표시됩니다. 재고에 항목을 추가하거나 기존 재고 항목의 세부 정보를 수정해도 됩니다. 이 애플리케이션과 상호 작용할 때 로드 밸런서는 로드 밸런서의 대상 그룹에서 이전에 본 AppServer로 요청을 전달합니다. AppServer는 Aurora 데이터베이스의 재고 변경 사항을 기록합니다. 웹 페이지 하단에는 인스턴스 ID와 인스턴스가 있는 가용 영역이 표시됩니다.
+
+ 참고: 나머지 실습 과제를 수행하는 동안 이 재고 애플리케이션 웹 브라우저 탭을 열어 두십시오. 이후 과제에서 이 탭으로 다시 돌아옵니다.
+
+
+
 ---
 ## 과제 2: 시작 템플릿 생성
 ### 인스턴스 템플릿 생성
@@ -100,6 +115,9 @@ systemctl enable httpd.service
 ### 템플릿 생성
 ![alt text](image-15.png)
 
+![alt text](image-39.png)
+
+![alt text](image-40.png)
 
 ---
 ## 과제 3: Auto Scaling 그룹 생성
@@ -121,6 +139,7 @@ systemctl enable httpd.service
 
 ![alt text](image-20.png)
 
+![alt text](image-41.png)
 ![alt text](image-21.png)
 
 ## 과제 4: 애플리케이션 테스트
@@ -131,8 +150,13 @@ Registered targets 섹션에 3개의 인스턴스가 있습니다. 여기에는 
 2. 등록 취소 
 ![alt text](image-23.png)
 
+![alt text](image-42.png)
 
+인스턴스가 등록 취소되는 즉시 로드 밸런서는 대상으로의 요청 라우팅을 중지합니다. AppServer 인스턴스의 Health status 열에는 draining 상태가 표시되고, Health Status Details 열에는 진행 중인 요청이 완료될 때까지 Target deregistration is in progress가 표시됩니다. 몇 분이 지나면 AppServer 인스턴스 등록 취소가 완료되고, 등록된 대상 목록에는 2개의 Auto Scaling 인스턴스만 남습니다.
 
+ 참고: 인스턴스 등록을 취소하면 로드 밸런서에서 인스턴스가 분리될 뿐입니다. AppServer 인스턴스는 사용자가 종료할 때까지 계속 무기한 실행됩니다.
+
+ ![alt text](image-43.png)
 
 
 ## ELB에서 health check 
