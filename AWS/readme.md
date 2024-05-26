@@ -7,6 +7,7 @@ http://bit.ly/krk_class  사전 등록이 필요합니다.
 
 https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3
 
+
 ![alt text](image.png)
 
 ### system manager console 
@@ -32,3 +33,6 @@ ssm-user    3003    2990  0 02:14 pts/0    00:00:00 sh
 ssm-user    3112    3003  0 02:19 pts/0    00:00:00 ps -ef
 ssm-user    3113    3003  0 02:19 pts/0    00:00:00 grep -i ssm
 ```
+
+* 연습문제
+https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/

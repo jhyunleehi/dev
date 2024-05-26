@@ -1,3 +1,8 @@
+# AWS 
+
+* 연습문제
+https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/
+
 ## Amazon Web Service 소개
 
 ### 클라이언트-서버 모델이란?
