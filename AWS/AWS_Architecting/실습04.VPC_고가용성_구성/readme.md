@@ -52,6 +52,7 @@ Amazon Web Services(AWS)는 클라우드에서 안정적이고 내결함성이 �
 ![alt text](image-10.png)
 
 ```sh
+
 #!/bin/bash
 #yum -y update
 dnf update -y
@@ -63,7 +64,7 @@ systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
 
 # Download Inventory App Lab files
-wget https://ap-southeast-1-tcprod.s3.ap-southeast-1.amazonaws.com/courses/ILT-TF-200-ARCHIT/v7.7.3.prod-f959cb1c/lab-4-HA/scripts/inventory-app.zip
+wget https://eu-west-1-tcprod.s3.eu-west-1.amazonaws.com/courses/ILT-TF-200-ARCHIT/v7.7.3.prod-f959cb1c/lab-4-HA/scripts/inventory-app.zip
 unzip inventory-app.zip -d /var/www/html/
 
 # Download and install the AWS SDK for PHP
@@ -74,7 +75,7 @@ unzip /var/www/html/aws.zip -d /var/www/html/
 # Load Amazon Aurora DB connection details from AWS CloudFormation
 un="dbadmin"
 pw="lab-password"
-ep="inventory-cluster.cluster-c2dro870nket.ap-southeast-1.rds.amazonaws.com"
+ep="inventory-cluster.cluster-cbfpgyqzulrz.eu-west-1.rds.amazonaws.com"
 db="inventory"
 
 # Populate PHP app settings with DB info
@@ -86,6 +87,8 @@ sed -i "s/DBPASSWORD/$pw/g" /var/www/html/get-parameters.php
 # Turn on web server
 systemctl start httpd.service
 systemctl enable httpd.service
+
+
 ```
 
 
@@ -142,6 +145,9 @@ systemctl enable httpd.service
 ![alt text](image-41.png)
 ![alt text](image-21.png)
 
+![alt text](image-66.png)
+![alt text](image-67.png)
+
 ## 과제 4: 애플리케이션 테스트
 
 1. target group  확인 
@@ -159,7 +165,7 @@ Registered targets 섹션에 3개의 인스턴스가 있습니다. 여기에는 
  ![alt text](image-43.png)
 
 
-## ELB에서 health check 
+### ELB에서 health check 
 * EC2 autoScale 에서도 health check : 2by2 (elb)
 * ELB에서도 health check  : Application 상태
 ![alt text](image-24.png)
@@ -191,13 +197,25 @@ Registered targets 섹션에 3개의 인스턴스가 있습니다. 여기에는 
 ---
 ## 과제 5: 애플리케이션 티어의 고가용성 테스트
 
-
+![alt text](image-44.png)
 
 ---
 ### 과제 6: 데이터베이스 티어의 고가용성 구성
 이전 과제에서 애플리케이션 티어의 고가용성을 확인했습니다. 하지만 Aurora 데이터베이스는 여전히 하나의 데이터베이스 인스턴스에서만 작동하고 있습니다.
 
 ### 과제 6.1: 여러 가용 영역에서 실행되도록 데이터베이스 구성
+
+![alt text](image-45.png)
+![alt text](image-46.png)
+![alt text](image-47.png)
+
+![alt text](image-48.png)
+
+ 추가 정보: Aurora 복제본 시작이 완료되면 데이터베이스가 여러 가용 영역에 고가용성 구성으로 배포됩니다. 이는 데이터베이스가 여러 인스턴스에 분산 된다는 뜻은 아닙니다. 프라이머리 DB 인스턴스와 Aurora 복제본 모두 동일한 공유 스토리지에 액세스하지만 프라이머리 DB 인스턴스만 쓰기에 사용할 수 있습니다. Aurora 복제본의 주 용도는 두 가지입니다. Aurora 복제본에 쿼리를 실행하여 애플리케이션에 대한 읽기 작업 크기를 조정할 수 있습니다. 그러려면 일반적으로 클러스터의 Reader 엔드포인트에 연결합니다. 이렇게 하면 Aurora가 읽기 전용 연결의 부하를 클러스터에 있는 여러 Aurora 복제본에 분산시킬 수 있습니다. Aurora 복제본은 가용성을 높이는 데도 도움이 됩니다. 클러스터의 쓰기 인스턴스를 사용할 수 없게 되면 Aurora는 자동으로 읽기 인스턴스 중 하나를 새 쓰기 인스턴스로 승격합니다. 자세한 내용은, 다음을 참조하십시오. Amazon Aurora를 사용한 복제
+
+
+![alt text](image-49.png)
+
 
 
 ---
@@ -210,17 +228,45 @@ Registered targets 섹션에 3개의 인스턴스가 있습니다. 여기에는 
 
 ![alt text](image-35.png)
 
+![alt text](image-50.png)
 
 ### 과제 7.1: 두 번째 NAT 게이트웨이 생성
 
+![alt text](image-51.png)
 
+![alt text](image-52.png)
+
+![alt text](image-53.png)
 
 ### 과제 7.2: 새 라우팅 테이블 생성 및 구성
 
-
+![alt text](image-54.png)
+![alt text](image-55.png)
+![alt text](image-56.png)
+![alt text](image-57.png)
+![alt text](image-62.png)
 
 ### 과제 7.3: 프라이빗 서브넷 2의 라우팅 구성
+![alt text](image-58.png)
 
+![alt text](image-59.png)
+![alt text](image-60.png)
+
+![alt text](image-61.png)
 
 ---
 ## 과제 8: Aurora 데이터베이스 장애 조치 적용
+
+![alt text](image-63.png)
+
+![alt text](image-64.png)
+
+![alt text](image-65.png)
+
+ 축하합니다! 다음 작업을 완료했습니다.
+
+Amazon EC2 Auto Scaling 그룹을 생성하여 여러 가용 영역을 포함하는 Application Load Balancer에 등록
+고가용성 Aurora DB 클러스터 생성
+고가용성을 제공하도록 Aurora DB 클러스터 수정
+중복 NAT 게이트웨이를 사용하여 고가용성을 갖추도록 Amazon VPC 구성 수정
+읽기 전용 복제본 인스턴스에 대한 장애 조치를 수행하는 데이터베이스 기능 확인

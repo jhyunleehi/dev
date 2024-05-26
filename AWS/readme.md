@@ -5,10 +5,6 @@ https://login.us-east-1.auth.skillbuilder.aws/login?redirect_uri=https://www.aws
 
 http://bit.ly/krk_class  사전 등록이 필요합니다. 
 
-[여기](https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3)
-
-https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3
-
 https://candle-caravan-bc3.notion.site/faafe025dee346679fe050609ebb19d3
 
 ![alt text](image.png)
