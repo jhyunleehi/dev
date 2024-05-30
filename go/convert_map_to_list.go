@@ -7,7 +7,7 @@ type KeyValue struct {
 	Value int
 }
 
-func main() {
+func main_2() {
 	// Initialize the map
 	myMap := map[string]int{
 		"Alice":   30,

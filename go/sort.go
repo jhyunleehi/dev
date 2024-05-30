@@ -10,7 +10,7 @@ type Person struct {
     Age  int
 }
 
-func main() {
+func main_1() {
     // Define a slice of Person structs
     people := []Person{
         {"Alice", 30},
