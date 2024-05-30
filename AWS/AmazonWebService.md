@@ -2,6 +2,7 @@
 
 * 연습문제
 https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/
+https://www.koreadumps.com/CLF-C01-KR-practice-test.html
 
 ## Amazon Web Service 소개
 
