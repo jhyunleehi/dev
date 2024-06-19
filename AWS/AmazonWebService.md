@@ -666,3 +666,28 @@ Amazon Q in QuickSight는 생성형 BI 기능으로 의사 결정의 속도를 �
 
 ### cognito 
 Amazon Cognito는 웹 및 모바일 앱을 위한 자격 증명 플랫폼입니다. Amazon Cognito는 OAuth 2.0 액세스 토큰 및  AWS  보안 인증을 위한 사용자 디렉터리, 인증 서버, 인증 서비스입니다. Amazon Cognito를 사용하면 기본 제공 사용자 디렉터리, 엔터프라이즈 디렉터리, Google 및 Facebook 같은 소비자 ID 제공업체의 사용자를 인증하고 권한을 부여할 수 있습니다.
+
+
+### Amazon EventBridge
+이제  Amazon  EventBridge 에서 Amazon CloudWatch  Events 가제공됩니다
+. EventBridge에서 수행할 수 있는 작업:
+  • 메시지를 보내 환경에 대응합니다
+  • 함수를 활성화거나 작업을 시작합니다
+  • 상태 정보를 캡처합니다 
+. 모니터링 CloudWatch AWS  서비스나 애플리케이션 및 시스템을 모니터링합니다
+. 이벤트 중심 아키텍처 EventBridge 이벤트 및 경보를 관리합니다
+. 자동화된 워크플로를 시작합니다
+. Amazon EventBridge 사용 시에는 지점 간 통합을 번거롭게 작성할 필요가 없습니다 
+. 확장성이 우수한 중앙 이벤트 스트림을 통해 AWS 와 서비스형 소프트웨어 (SaaS)  애플리케이션에서 적용된 데이터 변경 사항에 모두 액세스할  수 있기 때문입니다.
+CloudWatch 에서 캡처된 이벤트를 관리할 때는 기본적으로 EventBridge 를 사용합니다. 
+CloudWatch Events  및 EventBridge 의 기본 서비스와 API 는 동일하지만 EventBridge 에서 더 많은 기능이 제공됩니다
+. CloudWatch  또는 EventBridge 에서 적용하는 변경 사항은 각 콘솔에 표시됩니다 .
+EventBridge 를 사용하면  이벤트 게시자가 이벤트 구독자와 디커플링되는 간단한 프로그래밍 모델을 얻을 수 있습니다 . 
+그러면 느슨하게 결합되고 ,  독립적으로 크기를 조정할 수 있으며 ,  재사용성이 높은 이벤트 중심 애플리케이션을 구축할
+수  있습니다
+.
+EventBridge는 완전관리형 서비스이므로 EventBridge는 이벤트 수집과 전달에서 보안 ,  권한부여 및 오류 처리에 이르기까지
+모든 것을 처리합니다.  따라서 확장 가능한 이벤트 중심 애플리케이션을 구축할 수 있습니다 . EventBridge 는 서버리스이므로 관리할 인프라가 없으며 사용한 이벤트에 대해서만 비용을 지불하면 됩니다 . 사용자의 애플리케이션이나 SaaS  애플리케이션에서 
+생성하는 이벤트에 대한 비용만 지불하면 됩니다 .
+
+
